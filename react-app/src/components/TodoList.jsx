@@ -8,11 +8,11 @@ const TodoList = () => {
   return (
     <>
       <h2 style={{ margin: "10px", marginTop: "30px" }}>Tasks to do</h2>
-      <ul style={{ margin: "10px" }}>
+      <div style={{ textAlign: "start" }}>
         {todoList?.map((todo, index) => (
           <Todo key={index} data={todo} />
         ))}
-      </ul>
+      </div>
     </>
   );
 };

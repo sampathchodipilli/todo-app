@@ -11,6 +11,7 @@ const TodoInput = () => {
     if (newTodo.length > 0) {
       //handle submit
       addTodo(newTodo);
+      setNewTodo("");
     }
   };
 
@@ -22,6 +23,7 @@ const TodoInput = () => {
           type="text"
           name="todo-input"
           placeholder="e.g. Buy eggs"
+          value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           style={{
             height: "60px",

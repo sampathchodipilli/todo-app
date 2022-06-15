@@ -11,26 +11,25 @@ const Todo = ({ data }) => {
   const checkHandler = (id) => {};
 
   return (
-    <li style={{ margin: "10px" }}>
-      <div>
-        <span
-          style={
-            data.active
-              ? { textDecoration: "line-through", cursor: "pointer" }
-              : { cursor: "pointer" }
-          }
-          onClick={() => checkHandler(data.id)}
-        >
-          {data?.name}
-        </span>{" "}
-        <button
-          onClick={() => deleteHandler(data.id)}
-          style={{ cursor: "pointer" }}
-        >
-          ❌
-        </button>
-      </div>
-    </li>
+    <div style={{ margin: "10px" }}>
+      <span style={{ cursor: "pointer" }}>{data.active ? "✅ " : "⬜ "}</span>
+      <span
+        style={
+          data.active
+            ? { textDecoration: "line-through", cursor: "pointer" }
+            : { cursor: "text" }
+        }
+        onClick={() => checkHandler(data.id)}
+      >
+        {data?.name}
+      </span>{" "}
+      <button
+        onClick={() => deleteHandler(data.id)}
+        style={{ cursor: "pointer" }}
+      >
+        ❌
+      </button>
+    </div>
   );
 };
 
