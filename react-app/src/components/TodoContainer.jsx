@@ -5,6 +5,7 @@ import TodoList from "./TodoList";
 const TodoContainer = () => {
   return (
     <>
+      <h1>Todos</h1>
       <TodoInput />
       <TodoList />
     </>
