@@ -33,6 +33,7 @@ const TodoInput = () => {
             borderRadius: "15px",
             marginRight: "30px",
             paddingLeft: "15px",
+            boxShadow: "8px 10px 16px -14px rgba(94,94,94,0.52)",
           }}
         />
         <button
@@ -44,6 +45,7 @@ const TodoInput = () => {
             borderRadius: "15px 15px",
             cursor: "pointer",
             backgroundColor: "violet",
+            boxShadow: "8px 10px 16px -12px rgba(94,94,94,0.52)",
           }}
         >
           {"➕ Add Todo"}
