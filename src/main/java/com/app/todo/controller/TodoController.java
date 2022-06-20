@@ -1,5 +1,6 @@
 package com.app.todo.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -39,6 +40,11 @@ public class TodoController {
 	public ResponseEntity<Response> saveTodo(@RequestBody Todo todo) {
 		Response response = new Response(200, "Data Saved !");
 		try {
+			todo.setActive(true);
+			todo.setCreatedBy("todo-app");
+			todo.setCreatedDate(new Date());
+			todo.setDeletedFlag(false);
+			todo.setLastUpdDate(new Date());
 			repository.save(todo);
 		} catch(Exception e) {
 			logger.error("",e);
