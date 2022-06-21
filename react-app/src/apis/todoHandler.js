@@ -1,15 +1,5 @@
-import axios from "axios";
-import { act } from "react-dom/test-utils";
-
-const apiAction = (action) => {
-  return `http://localhost:8080/todo-app/${action}`;
-};
-
-const actions = {
-  getAllTodos: "getAllTodos",
-  deleteTodo: "deleteTodo",
-  addTodo: "saveTodo",
-};
+import { axiosInstance as axios } from "../config";
+import URL from "./constants";
 
 /**
  * Fetches all todos from database and returns it as an array of todo objects.
@@ -18,7 +8,7 @@ const actions = {
 export const fetchAllTodos = async () => {
   console.log("Fetching todos");
   const rawTodos = axios
-    .get(apiAction(actions.getAllTodos))
+    .get(URL.getAllTodos)
     .then((response) => {
       //   console.log(response.data);
       return response.data;
@@ -37,7 +27,7 @@ export const fetchAllTodos = async () => {
 export const addNewTodo = async (todo) => {
   console.log(`Adding todo "${todo}"`);
   const response = axios
-    .post(apiAction(actions.addTodo), {
+    .post(URL.addTodo, {
       name: todo,
       active: false,
     })
@@ -61,7 +51,7 @@ export const addNewTodo = async (todo) => {
 export const deleteTodo = async (todoId) => {
   console.log(`Deleting todo (${todoId ?? ""})`);
   const response = axios
-    .post(apiAction(actions.deleteTodo), null, {
+    .post(URL.deleteTodo, null, {
       params: {
         id: todoId,
       },
