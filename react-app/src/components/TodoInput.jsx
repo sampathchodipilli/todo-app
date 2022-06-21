@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { TodoContext } from "../App";
+import CenterLayout from "./CenterLayout";
 
 const TodoInput = () => {
   const [newTodo, setNewTodo] = useState("");
@@ -16,13 +17,31 @@ const TodoInput = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="todo-input"></label>
-        <input
+    <CenterLayout>
+      <form onSubmit={submitHandler} className="form-floating">
+        <label htmlFor="todo-input" class="form-control">
+          New Todo
+        </label>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="e.g. Buy eggs"
+            name="todo-input"
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+          />
+          <button
+            class="btn btn-lg btn-outline-success rounded-end"
+            type="button"
+          >
+            <i className="bi bi-plus-lg"></i> Add todo
+          </button>
+        </div>
+        {/* <input
           type="text"
-          name="todo-input"
           placeholder="e.g. Buy eggs"
+          // name="todo-input"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           style={{
@@ -49,9 +68,9 @@ const TodoInput = () => {
           }}
         >
           {"➕ Add Todo"}
-        </button>
+        </button> */}
       </form>
-    </div>
+    </CenterLayout>
   );
 };
 

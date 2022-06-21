@@ -4,11 +4,11 @@ import TodoList from "./TodoList";
 
 const TodoContainer = () => {
   return (
-    <>
-      <h1>Todos</h1>
+    <div className="container">
+      <h1 className="text-center display-4 mb-4">Todos</h1>
       <TodoInput />
       <TodoList />
-    </>
+    </div>
   );
 };
 

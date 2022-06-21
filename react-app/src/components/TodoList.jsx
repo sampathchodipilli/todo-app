@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { TodoContext } from "../App";
+import CenterLayout from "./CenterLayout";
 import Todo from "./Todo";
 
 const TodoList = () => {
   const { todos: todoList } = useContext(TodoContext);
 
   return (
-    <>
-      <h2 style={{ margin: "10px", marginTop: "30px" }}>Tasks to do</h2>
-      <div style={{ textAlign: "start" }}>
+    <CenterLayout>
+      <h2>Tasks to do</h2>
+      <div>
         {todoList
           ?.filter((t) => t.active === true)
           ?.map((todo, index) => (
@@ -16,15 +17,15 @@ const TodoList = () => {
           ))}
       </div>
       <hr />
-      <h2 style={{ margin: "10px", marginTop: "30px" }}>Completed tasks</h2>
-      <div style={{ textAlign: "start" }}>
+      <h2>Completed tasks</h2>
+      <div>
         {todoList
           ?.filter((t) => t.active === false)
           ?.map((todo, index) => (
             <Todo key={index} data={todo} />
           ))}
       </div>
-    </>
+    </CenterLayout>
   );
 };
 

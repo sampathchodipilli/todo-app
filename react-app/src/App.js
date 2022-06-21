@@ -7,6 +7,7 @@ import {
 } from "./apis/todoHandler";
 import "./App.css";
 import TodoContainer from "./components/TodoContainer";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export const TodoContext = createContext();
 
@@ -72,14 +73,7 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignSelf: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className="container-fluid">
       <TodoContext.Provider
         value={{
           todos,

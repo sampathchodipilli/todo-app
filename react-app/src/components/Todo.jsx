@@ -21,6 +21,7 @@ const Todo = ({ data }) => {
   };
 
   const editHandler = () => {
+    setEditContent(data?.name ?? "");
     setEditing(true);
   };
 
@@ -30,47 +31,62 @@ const Todo = ({ data }) => {
   };
 
   return (
-    <div style={{ margin: "10px" }}>
+    <div className="row d-flex">
       <span
         style={{ cursor: "pointer" }}
         onClick={() => checkHandler(data.id)}
         title={data?.active ? "Mark complete" : "Mark incomplete"}
+        className="col-1 align-content-end align-self-center"
       >
-        {data.active ? "⬜" : "✅ "}
+        {data.active ? (
+          <i className="bi bi-square"></i>
+        ) : (
+          <i className="bi bi-check-square-fill"></i>
+        )}
       </span>
-      {editing ? (
-        <input
-          type="text"
-          defaultValue={data?.name}
-          value={editContent}
-          onChange={(event) => setEditContent(event.target.value)}
-        />
-      ) : (
-        <span
-          style={
-            data.active
-              ? { cursor: "text" }
-              : { textDecoration: "line-through", cursor: "pointer" }
-          }
-        >
-          {data?.name}
-        </span>
-      )}{" "}
+      <div className="col-7 align-self-center">
+        {editing ? (
+          <input
+            type="text"
+            defaultValue={data?.name}
+            value={editContent}
+            style={{
+              width: "100%",
+              border: "dotted .5px",
+            }}
+            className="rounded p-1"
+            onChange={(event) => setEditContent(event.target.value)}
+          />
+        ) : (
+          <span
+            style={
+              data.active
+                ? { cursor: "text" }
+                : { textDecoration: "line-through", cursor: "pointer" }
+            }
+          >
+            {data?.name}
+          </span>
+        )}{" "}
+      </div>
+
       {editing ? (
         <>
           <button
             style={{ cursor: "pointer" }}
-            title="Save content"
+            title="Save changes"
             onClick={saveHandler}
+            className="col-1 btn btn-sm btn-outline-primary"
           >
-            💾 Save
+            💾
           </button>
           <button
             style={{ cursor: "pointer" }}
-            title="Discard content"
+            title="Discard changes"
             onClick={discardHandler}
+            className="col-1 btn btn-sm btn-outline-warning"
           >
-            🗑️ Discard
+            <i className="bi bi-x-lg"></i>
           </button>
         </>
       ) : (
@@ -78,16 +94,18 @@ const Todo = ({ data }) => {
           style={{ cursor: "pointer" }}
           title={editing ? "Save content" : "Edit content"}
           onClick={editHandler}
+          className="col-2 btn btn-sm btn-outline-dark"
         >
-          🖊 Edit
+          <i className="bi bi-pencil-square"></i> Edit
         </button>
       )}
       <button
         onClick={() => deleteHandler(data.id)}
         style={{ cursor: "pointer" }}
         title="Delete todo"
+        className="col-2 btn btn-sm btn-outline-danger"
       >
-        ❌ Delete
+        <i className="bi bi-trash-fill"></i> Delete
       </button>
     </div>
   );
