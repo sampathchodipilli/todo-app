@@ -8,7 +8,7 @@ const TodoList = () => {
 
   return (
     <CenterLayout>
-      <h2>Tasks to do</h2>
+      <h2 className="h3">Tasks to do</h2>
       <div>
         {todoList
           ?.filter((t) => t.active === true)
@@ -16,8 +16,8 @@ const TodoList = () => {
             <Todo key={index} data={todo} />
           ))}
       </div>
-      <hr />
-      <h2>Completed tasks</h2>
+      <hr className="my-4" />
+      <h2 className="h3">Completed tasks</h2>
       <div>
         {todoList
           ?.filter((t) => t.active === false)
