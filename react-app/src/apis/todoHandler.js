@@ -70,12 +70,12 @@ export const deleteTodo = async (todoId) => {
 };
 
 /**
- * Toggles completion status of the todo.
+ * Updates the todo.
  * @param {Todo} todoId
  * @returns {{status, message}}
  */
-export const toggleComplete = async (todo) => {
-  console.log(`Toggling completion for todo (${todo?.id ?? ""})`);
+export const updateTodo = async (todo) => {
+  console.log(`Updating todo (${todo?.id ?? ""})`);
   const response = axios
     .get(URL.updateTodo, {
       params: {

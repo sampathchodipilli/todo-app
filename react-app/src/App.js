@@ -2,8 +2,8 @@ import { createContext, useEffect, useState } from "react";
 import {
   addNewTodo,
   fetchAllTodos,
+  updateTodo,
   deleteTodo,
-  toggleComplete,
 } from "./apis/todoHandler";
 import "./App.css";
 import TodoContainer from "./components/TodoContainer";
@@ -46,7 +46,20 @@ function App() {
       ...updatedTodo,
       active: !updatedTodo?.active,
     };
-    toggleComplete(updatedTodo).then((res) => {
+    updateTodo(updatedTodo).then((res) => {
+      if (res?.status === 200) {
+        loadTodos();
+      }
+    });
+  };
+
+  const saveEditContent = async (todoId, content) => {
+    let updatedTodo = todos.find((t) => t.id === todoId);
+    updatedTodo = {
+      ...updatedTodo,
+      name: content,
+    };
+    updateTodo(updatedTodo).then((res) => {
       if (res?.status === 200) {
         loadTodos();
       }
@@ -73,6 +86,7 @@ function App() {
           addTodo,
           deleteSelectedTodo,
           toggleCompleteStatus,
+          saveEditContent,
         }}
       >
         <TodoContainer />
