@@ -8,6 +8,8 @@ import {
 import "./App.css";
 import TodoContainer from "./components/TodoContainer";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 export const TodoContext = createContext();
 
@@ -34,7 +36,8 @@ function App() {
   };
 
   const deleteSelectedTodo = async (todoId) => {
-    deleteTodo(Number(todoId)).then((res) => {
+    let todoDelete = todos.find((t) => t.id === todoId);
+    deleteTodo(todoDelete).then((res) => {
       if (res.status === 200) {
         loadTodos();
       }
@@ -47,10 +50,18 @@ function App() {
       ...updatedTodo,
       active: !updatedTodo?.active,
     };
-    updateTodo(updatedTodo).then((res) => {
+    const response = updateTodo(updatedTodo).then((res) => {
       if (res?.status === 200) {
         loadTodos();
       }
+      return res;
+    });
+    toast.promise(response, {
+      pending: updatedTodo?.active
+        ? "Marking todo incomplete"
+        : "Marking todo complete",
+      success: "Update successful",
+      error: "Unable to update at the moment",
     });
   };
 
@@ -60,10 +71,16 @@ function App() {
       ...updatedTodo,
       name: content,
     };
-    updateTodo(updatedTodo).then((res) => {
+    const response = updateTodo(updatedTodo).then((res) => {
       if (res?.status === 200) {
         loadTodos();
       }
+      return res;
+    });
+    toast.promise(response, {
+      pending: "Saving todo",
+      success: "Save successful",
+      error: "Unable to save at the moment",
     });
   };
 
@@ -85,6 +102,15 @@ function App() {
       >
         <TodoContainer />
       </TodoContext.Provider>
+      <ToastContainer
+        position="bottom-center"
+        limit={3}
+        closeOnClick={true}
+        hideProgressBar={true}
+        transition={Bounce}
+        theme={"colored"}
+        autoClose={1500}
+      />
     </div>
   );
 }

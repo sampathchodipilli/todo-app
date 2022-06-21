@@ -1,4 +1,5 @@
 import { axiosInstance as axios } from "../config";
+import { toast } from "react-toastify";
 import URL from "./constants";
 
 /**
@@ -10,12 +11,16 @@ export const fetchAllTodos = async () => {
   const rawTodos = axios
     .get(URL.getAllTodos)
     .then((response) => {
-      //   console.log(response.data);
       return response.data;
     })
     .catch((e) => {
       console.error(e);
     });
+  toast.promise(rawTodos, {
+    pending: "Fetching todos...",
+    success: "Fetched todos successfully!",
+    error: "Unable to fetch todos at this moment!",
+  });
   return rawTodos;
 };
 
@@ -41,6 +46,11 @@ export const addNewTodo = async (todo) => {
     .catch((err) => {
       console.error(err);
     });
+  toast.promise(response, {
+    pending: `Adding ${todo?.name ?? "-nothing-"} to the list!`,
+    success: `Successfully added ${todo?.name ?? "-nothing-"} to the list!`,
+    error: `Error adding ${todo?.name ?? "-nothing-"} to the list!`,
+  });
   return response;
 };
 
@@ -48,12 +58,12 @@ export const addNewTodo = async (todo) => {
  * Deletes the todo from database.
  * @param {Number} todoId
  */
-export const deleteTodo = async (todoId) => {
-  console.log(`Deleting todo (${todoId ?? ""})`);
+export const deleteTodo = async (todo) => {
+  console.log(`Deleting todo (${todo?.name ?? ""})`);
   const response = axios
     .post(URL.deleteTodo, null, {
       params: {
-        id: todoId,
+        id: todo?.id,
       },
     })
     .then((res) => {
@@ -66,6 +76,11 @@ export const deleteTodo = async (todoId) => {
     .catch((err) => {
       console.error(err);
     });
+  toast.promise(response, {
+    pending: `Deleting todo (${todo?.name ?? ""})!`,
+    success: `Successfully deleted todo (${todo?.name ?? ""})!`,
+    error: `Error deleting todo (${todo?.name ?? ""})!`,
+  });
   return response;
 };
 
