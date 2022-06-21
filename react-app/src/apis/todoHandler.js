@@ -71,9 +71,29 @@ export const deleteTodo = async (todoId) => {
 
 /**
  * Toggles completion status of the todo.
- * @param {Number} todoId
+ * @param {Todo} todoId
  * @returns {{status, message}}
  */
-export const toggleComplete = async (todoId) => {
-  console.log(`Toggling completion for todo (${todoId ?? ""})`);
+export const toggleComplete = async (todo) => {
+  console.log(`Toggling completion for todo (${todo?.id ?? ""})`);
+  const response = axios
+    .get(URL.updateTodo, {
+      params: {
+        id: todo?.id,
+        name: todo?.name,
+        active: todo?.active,
+      },
+    })
+    .then((res) => {
+      const { data } = res;
+      console.log(data);
+      return {
+        status: data?.statusCode,
+        message: data?.message,
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  return response;
 };

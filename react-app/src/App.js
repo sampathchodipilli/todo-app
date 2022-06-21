@@ -42,6 +42,16 @@ function App() {
 
   const toggleCompleteStatus = async (todoId) => {
     console.log("Code to complete todo is not yet implemented");
+    let updatedTodo = todos.find((t) => t.id === todoId);
+    updatedTodo = {
+      ...updatedTodo,
+      active: !updatedTodo?.active,
+    };
+    toggleComplete(updatedTodo).then((res) => {
+      if (res?.status === 200) {
+        loadTodos();
+      }
+    });
   };
 
   useEffect(() => {

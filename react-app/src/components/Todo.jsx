@@ -8,18 +8,21 @@ const Todo = ({ data }) => {
     deleteSelectedTodo(id);
   };
 
-  const checkHandler = (id) => {};
+  const checkHandler = (id) => {
+    toggleCompleteStatus(id);
+  };
 
   return (
     <div style={{ margin: "10px" }}>
-      <span style={{ cursor: "pointer" }}>{data.active ? "✅ " : "⬜ "}</span>
+      <span style={{ cursor: "pointer" }} onClick={() => checkHandler(data.id)}>
+        {data.active ? "⬜" : "✅ "}
+      </span>
       <span
         style={
           data.active
-            ? { textDecoration: "line-through", cursor: "pointer" }
-            : { cursor: "text" }
+            ? { cursor: "text" }
+            : { textDecoration: "line-through", cursor: "pointer" }
         }
-        onClick={() => checkHandler(data.id)}
       >
         {data?.name}
       </span>{" "}
