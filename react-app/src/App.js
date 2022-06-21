@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   addNewTodo,
   fetchAllTodos,
@@ -41,7 +41,6 @@ function App() {
   };
 
   const toggleCompleteStatus = async (todoId) => {
-    console.log("Code to complete todo is not yet implemented");
     let updatedTodo = todos.find((t) => t.id === todoId);
     updatedTodo = {
       ...updatedTodo,
