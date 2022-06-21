@@ -56,13 +56,14 @@ public class TodoController {
 	}
 	
 	@GetMapping("/updateTodo")
-	public ResponseEntity<Response> updateTodo(@RequestParam("id") Integer id, @RequestParam("name") String name) {
+	public ResponseEntity<Response> updateTodo(@RequestParam("id") Integer id, @RequestParam("name") String name, @RequestParam("active") Boolean active) {
 		Response response = new Response(200, "Data Updated !");
 		try {
 			Optional<Todo> byId = repository.findById(id);
 			if(!ObjectUtils.isEmpty(byId)) {
 				Todo todo = byId.get();
 				todo.setName(name);
+				todo.setActive(active);
 				todo.setLastUpdBy("todo-app");
 				todo.setLastUpdDate(new Date());
 				repository.save(todo);
