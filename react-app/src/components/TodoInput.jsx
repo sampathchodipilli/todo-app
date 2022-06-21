@@ -33,7 +33,7 @@ const TodoInput = () => {
           />
           <button
             class="btn btn-lg btn-outline-success rounded-end"
-            type="button"
+            type="submit"
           >
             <i className="bi bi-plus-lg"></i> Add todo
           </button>
