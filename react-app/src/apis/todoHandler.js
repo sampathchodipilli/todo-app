@@ -47,9 +47,9 @@ export const addNewTodo = async (todo) => {
       console.error(err);
     });
   toast.promise(response, {
-    pending: `Adding ${todo?.name ?? "-nothing-"} to the list!`,
-    success: `Successfully added ${todo?.name ?? "-nothing-"} to the list!`,
-    error: `Error adding ${todo?.name ?? "-nothing-"} to the list!`,
+    pending: `Adding (${todo ?? "-nothing-"}) to the list!`,
+    success: `Successfully added (${todo ?? "-nothing-"}) to the list!`,
+    error: `Error adding (${todo ?? "-nothing-"}) to the list!`,
   });
   return response;
 };
