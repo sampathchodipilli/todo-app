@@ -19,20 +19,20 @@ const TodoInput = () => {
   return (
     <CenterLayout>
       <form onSubmit={submitHandler} className="form-floating">
-        <label htmlFor="todo-input" class="form-control">
+        <label htmlFor="todo-input" className="form-control">
           New Todo
         </label>
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="e.g. Buy eggs"
             name="todo-input"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
           />
           <button
-            class="btn btn-lg btn-outline-success rounded-end"
+            className="btn btn-lg btn-outline-success rounded-end"
             type="submit"
           >
             <i className="bi bi-plus-lg"></i> Add todo
